@@ -12,13 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CRUDFireBase">
         <activity
+            android:name=".MainUserData"
+            android:exported="false" />
+        <activity
+            android:name=".MainSignUp"
+            android:exported="false" />
+        <activity
             android:name=".Product"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".MainSignUp"
+            android:name=".MainSignIn"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

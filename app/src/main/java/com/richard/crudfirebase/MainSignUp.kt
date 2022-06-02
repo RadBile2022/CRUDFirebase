@@ -7,6 +7,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import java.util.*
 import kotlin.math.sign
 
 class MainSignUp : AppCompatActivity() {
@@ -15,6 +18,7 @@ class MainSignUp : AppCompatActivity() {
     lateinit var etEmailSignUp : EditText
     lateinit var etPasswordSignUp : EditText
     lateinit var btnSignUp : Button
+    private lateinit var DbSignUp : DatabaseReference
 
     lateinit var mAuth : FirebaseAuth
 
@@ -28,6 +32,7 @@ class MainSignUp : AppCompatActivity() {
         btnSignUp = findViewById(R.id.btnSignUp)
 
         mAuth = FirebaseAuth.getInstance()
+        DbSignUp = FirebaseDatabase.getInstance().reference
 
         btnSignUp.setOnClickListener{
             val name = etNameSignUp.text.toString()
@@ -48,12 +53,28 @@ class MainSignUp : AppCompatActivity() {
         mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this, "Sign Up Berhasil", Toast.LENGTH_SHORT).show()
+
+                    var name = etNameSignUp.text.toString()
+                    var email = etEmailSignUp.text.toString()
+                    var uuid = mAuth.uid.toString()
+                    DbSignUp.child("sign up").child(uuid).setValue(SignUp(name,email,uuid))
+                    Toast.makeText(this,"Data Sign Up", Toast.LENGTH_LONG).show()
+
                     Log.i("DataBase","Berhasil")
+                    Log.d("Task", task.toString())
+
+                    etEmailSignUp.text.clear()
+                    etPasswordSignUp.text.clear()
+
                 }else{
-                    Toast.makeText(this, "Sign Up Gagal", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Sign Up Gagal, "+task.exception, Toast.LENGTH_SHORT).show()
                 }
             }
     }
 
-}
+
+
+
+
+    }
+
