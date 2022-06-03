@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CRUDFireBase">
         <activity
-            android:name=".MainUserData"
+            android:name=".MainSignIn"
             android:exported="false" />
         <activity
             android:name=".MainSignUp"
@@ -24,7 +24,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".MainSignIn"
+            android:name=".MainUserList"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

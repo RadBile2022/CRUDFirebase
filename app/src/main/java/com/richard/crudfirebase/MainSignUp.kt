@@ -57,7 +57,7 @@ class MainSignUp : AppCompatActivity() {
                     var name = etNameSignUp.text.toString()
                     var email = etEmailSignUp.text.toString()
                     var uuid = mAuth.uid.toString()
-                    DbSignUp.child("sign up").child(uuid).setValue(SignUp(name,email,uuid))
+                    DbSignUp.child("user").child(uuid).setValue(SignUp(name,email,uuid))
                     Toast.makeText(this,"Data Sign Up", Toast.LENGTH_LONG).show()
 
                     Log.i("DataBase","Berhasil")
