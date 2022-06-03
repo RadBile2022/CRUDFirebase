@@ -17,7 +17,7 @@ class UserAdapter
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.view.
+//        holder.view.
     }
 
     override fun getItemCount(): Int {
